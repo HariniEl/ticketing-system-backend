@@ -1,21 +1,30 @@
-dotenv=require("dotenv"),
-express=require('express'),
-cors=require('cors'),
-nodemailer=require('nodemailer'),
-bcrypt=require('bcrypt'),
-jwt=require('jsonwebtoken'),
-generator =require('generate-password'),
-adminRouter=require('./routes/admin.route.js'),
-userRouter=require('./routes/users.route.js'),
-managerRouter=require('./routes/manager.route.js'),
-helperRouter=require('./routes/helper.route.js'),
-allcommand=require('./routes/allcommand.route.js'),
-mainsigin=require('./routes/mainsignin.route.js')
+
+import express from 'express';
+import { MongoClient, ObjectId } from 'mongodb'
+import cors from 'cors';
+import nodemailer from 'nodemailer'
+import bcrypt from 'bcrypt'
+import  jwt  from 'jsonwebtoken'
+import * as dotenv from 'dotenv'
+import generator from 'generate-password'
+import adminRouter from './routes/admin.route.js'
+import userRouter from './routes/users.route.js'
+import managerRouter from './routes/manager.route.js'
+import helperRouter from './routes/helper.route.js'
+import allcommand from './routes/allcommand.route.js'
+import mainsigin from './routes/mainsignin.route.js'
+
+dotenv.config()
 
 const app = express()
 
-const PORT = process.env.PORT ||3000
+const port = process.env.PORT ||3000;
 
+
+
+const MONGO_URL = process.env.MONGO_URL
+const client = new MongoClient(MONGO_URL)
+await client.connect()
 
 app.use(cors())
 app.use(express.json())
@@ -50,5 +59,9 @@ app.use('/helpdesk',helperRouter)
 
 
 
-app.listen(PORT)
+app.listen(port, ()=>{
+  console.log(`Server is running on port: ${port}`);
+});
 
+export {client,bcrypt,jwt,generator,transporter,ObjectId}
+export default genHashesPassword

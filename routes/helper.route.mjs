@@ -1,5 +1,6 @@
-helperAuth =require ('../middleware/managerAuth.js');
-express =require('express')
+import { helperAuth } from '../middleware/managerAuth.js';
+import express from 'express'
+import { helpertokens, helperlogouts, helperprofiles, gethelperprofiles, sendingquerytohelpers, getingquerydetails, updatingquerydetails } from '../services/helper.service.js';
 
 const router = express.Router();
 
@@ -66,3 +67,4 @@ router.get('/token/:helpername',async function(request,response){
         
         })
 
+export default router;

@@ -1,6 +1,6 @@
-ObjectId-require("../index.js");
+import { client, ObjectId } from "../index.js";
 
-async function updatingquerydetails(id, assigedhelpername, value) {
+export async function updatingquerydetails(id, assigedhelpername, value) {
   return await client
     .db("ticket-system")
     .collection("query-from-user")
@@ -46,5 +46,5 @@ export async function helpertokens(helpername) {
   return await client
     .db('ticket-system')
     .collection('helper-token')
-    .findOne({ helpername: helpername });
+    .findOne({ helpername: helpername })
 }

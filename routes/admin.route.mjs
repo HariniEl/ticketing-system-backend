@@ -1,8 +1,10 @@
-adminAuth=require("../middleware/managerAuth.js"),
-express =require('express')
-bcrypt,jwt=require("../index.js");
-genHashesPassword =require("../index.js");
-transporter=require("../index.js");
+
+import { adminAuth } from "../middleware/managerAuth.js"
+import express from 'express'
+import { bcrypt,jwt} from "../index.js";
+import genHashesPassword from "../index.js";
+import {changehelpername, adminfromdb, creatingadmin, storeadmintokens, getinghelperfromdbs, getingmanagerfromdb, createhelpers, creatingmanagers, admintokens, adminlogout, adminprofiles, adminprofile, getinghelpertoadmin, getingmanagertoadmin, getingquery, getingquerys, getingquerysofmanager, getingqueryofuser ,changePassword, changemanage } from "../services/admin.service.js";
+import { transporter } from "../index.js";
 
 
 const router = express.Router();
@@ -333,3 +335,5 @@ router.get('/users', adminAuth, async function(request,response){
               
             }
           })
+
+export default router

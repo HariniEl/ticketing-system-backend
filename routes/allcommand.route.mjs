@@ -1,5 +1,5 @@
-express=require('express'),
-getingcommand=require('../services/allcommand.service.js');
+import express from 'express'
+import { getingcommand } from '../services/allcommand.service.js';
 
 
 
@@ -13,4 +13,4 @@ router.get('/command/:id', async function(request,response){
     
   response.send(getingCommand)
   })
-  
+  export default router;

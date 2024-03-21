@@ -1,8 +1,9 @@
-userAuth =require('../middleware/managerAuth.js');
-express =require('express');
-generator,transporter=require("../index.js");
-genHashesPassword =require("../index.js");
-bcrypt-require('../index.js');
+import { userAuth } from '../middleware/managerAuth.js';
+import express from 'express'
+import { generator,transporter} from "../index.js";
+import genHashesPassword from "../index.js";
+import { bcrypt} from '../index.js';
+import { changePassword , getinguserfromdb, creatingusers, usertoken, userlogout, userprofile, getuserprofile, getingquerys, postingquerys, getingquerydetails } from '../services/user.service.js';
 
 
 const router = express.Router();
@@ -83,7 +84,7 @@ router.get('/profile/:name', userAuth, async function(request,response){
         })
  router.get('/query', userAuth, async function(request,response){
    
-            const getingQuery = await getingquerys()
+            const getingQuery = await getingquerys(request)
         
         response.send(getingQuery)
         })
@@ -205,3 +206,4 @@ router.post('/query',userAuth, async function(request,response){
           }
         })
 
+export default router;

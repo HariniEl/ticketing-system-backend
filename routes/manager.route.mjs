@@ -1,6 +1,7 @@
- managerAuth =require( '../middleware/managerAuth.js');
- express=require('express')
-transporter-require("../index.js");
+import { managerAuth } from '../middleware/managerAuth.js';
+import express from 'express'
+import { transporter } from "../index.js";
+import { managertokens, managerlogouts, managerprofile, managerprofiles, updatingquerydetails, getingquerystomanager, getingquerydetailstomanager, getingmanagerdetails, postingcommands } from '../services/manager.service.js';
 
 
 const router = express.Router();
@@ -34,7 +35,7 @@ const router = express.Router();
     
             const {completedmanagername,emailcontent,status,details}= request.body
             const {id} = request.params
-            const updatingQueryDetails = await updatingquerydetails(id, status, emailcontent, completedmanagername)
+            const updatingQueryDetails = await updatingquerydetails(id, status, emailcontent, completedmanagername,details)
            
           
           var mailOptions = {
@@ -51,7 +52,7 @@ const router = express.Router();
           
           router.get('/query', managerAuth, async function(request,response){
               
-              const getingQuerysToManager = await getingquerystomanager()
+              const getingQuerysToManager = await getingquerystomanager(request)
              
           
           response.send(getingQuerysToManager)
@@ -84,3 +85,4 @@ const router = express.Router();
 
 
 
+export default router;

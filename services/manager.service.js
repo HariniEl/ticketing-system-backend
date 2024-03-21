@@ -1,31 +1,31 @@
-ObjectId -require ("../index.js");
+import { client, ObjectId } from "../index.js";
 
-async function postingcommands(request) {
+export async function postingcommands(request) {
   return await client
     .db("ticket-system")
     .collection("command")
     .insertOne(request.body);
 }
-async function getingmanagerdetails(name) {
+export async function getingmanagerdetails(name) {
   return await client
     .db("ticket-system")
     .collection("manager-signup-signin")
     .findOne({ managername: name });
 }
-async function getingquerydetailstomanager(id) {
+export async function getingquerydetailstomanager(id) {
   return await client
     .db("ticket-system")
     .collection("query-from-user")
     .findOne({ _id: ObjectId(id) });
 }
-async function getingquerystomanager() {
+export async function getingquerystomanager() {
   return await client
     .db("ticket-system")
     .collection("query-from-user")
     .find()
     .toArray();
 }
-async function updatingquerydetails(id, status, emailcontent, completedmanagername) {
+export async function updatingquerydetails(id, status, emailcontent, completedmanagername) {
   return await client
     .db("ticket-system")
     .collection("query-from-user")
@@ -36,27 +36,27 @@ async function updatingquerydetails(id, status, emailcontent, completedmanagerna
       }
     });
 }
-async function managerprofiles(name) {
+export async function managerprofiles(name) {
   return await client
     .db("ticket-system")
     .collection("manager-signup-signin")
     .findOne({ managername: name });
 }
-async function managerprofile(name, profile) {
+export async function managerprofile(name, profile) {
   return await client
     .db("ticket-system")
     .collection("manager-signup-signin")
     .updateOne({ managername: name }, { $set: { profileimage: profile } });
 }
-async function managerlogouts(name) {
+export async function managerlogouts(name) {
   return await client
     .db('ticket-system')
     .collection('manager-token')
     .deleteOne({ managername: name });
 }
-async function managertokens(managername) {
+export async function managertokens(managername) {
   return await client
     .db('ticket-system')
     .collection('manager-token')
-    .findOne({ managername: managername });
+    .findOne({ managername: managername })
 }

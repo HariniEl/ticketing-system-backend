@@ -1,61 +1,61 @@
-ObjectId =require("../index.js");
+import { client, ObjectId } from "../index.js";
 
-async function getingquerydetails(id) {
+export async function getingquerydetails(id) {
     return await client
         .db("ticket-system")
         .collection("query-from-user")
         .findOne({ _id: ObjectId(id) });
 }
-async function postingquerys(request) {
+export async function postingquerys(request) {
     return await client
         .db("ticket-system")
         .collection("query-from-user")
         .insertOne(request.body);
 }
-async function getingquerys() {
+export async function getingquerys() {
     return await client
         .db("ticket-system")
         .collection("query-from-user")
         .find()
         .toArray();
 }
- async function getuserprofile(name) {
+export async function getuserprofile(name) {
     return await client
         .db("ticket-system")
         .collection("user-signup-signin")
         .findOne({ email: name });
 }
- async function userprofile(name, profile) {
+export async function userprofile(name, profile) {
     return await client
         .db("ticket-system")
         .collection("user-signup-signin")
         .updateOne({ email: name }, { $set: { profileimage: profile } });
 }
- async function userlogout(name) {
+export async function userlogout(name) {
     return await client
         .db('ticket-system')
         .collection('user-token')
         .deleteOne({ username: name });
 }
- async function usertoken(username) {
+export async function usertoken(username) {
     return await client
         .db('ticket-system')
         .collection('user-token')
         .findOne({ username: username });
 }
- async function creatingusers(userDetails) {
+export async function creatingusers(userDetails) {
     return await client
         .db("ticket-system")
         .collection("user-signup-signin")
         .insertOne(userDetails);
 }
- async function getinguserfromdb(username) {
+export async function getinguserfromdb(username) {
     return await client
         .db("ticket-system")
         .collection("user-signup-signin")
         .findOne({ email: username });
 }
- async function changePassword(data) {
+export async function changePassword(data) {
     return await client
       .db("ticket-system")
       .collection("user-signup-signin")

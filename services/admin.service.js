@@ -1,78 +1,78 @@
+import { client } from "../index.js"
 
-
-async function getingqueryofuser() {
+export async function getingqueryofuser() {
   return await client
     .db("ticket-system")
     .collection("user-signup-signin")
     .find()
     .toArray();
 }
-async function getingquerysofmanager() {
+export async function getingquerysofmanager() {
   return await client
     .db("ticket-system")
     .collection("manager-signup-signin")
     .find()
     .toArray();
 }
-async function getingquerys() {
+export async function getingquerys() {
   return await client
     .db("ticket-system")
     .collection("helper-signup-signin")
     .find()
     .toArray();
 }
-async function getingquery() {
+export async function getingquery() {
   return await client
     .db("ticket-system")
     .collection("query-from-user")
     .find()
     .toArray();
 }
-async function getingmanagertoadmin() {
+export async function getingmanagertoadmin() {
   return await client
     .db("ticket-system")
     .collection("manager-signup-signin")
     .find()
     .toArray();
 }
-async function getinghelpertoadmin() {
+export async function getinghelpertoadmin() {
   return await client
     .db("ticket-system")
     .collection("helper-signup-signin")
     .find()
     .toArray();
 }
-async function adminprofile(name) {
+export async function adminprofile(name) {
   return await client
     .db("ticket-system")
     .collection("admin-signup-signin")
     .findOne({ adminname: name });
 }
-async function adminprofiles(name, profile) {
+export async function adminprofiles(name, profile) {
   return await client
     .db("ticket-system")
     .collection("admin-signup-signin")
     .updateOne({ adminname: name }, { $set: { profileimage: profile } });
 }
-async function adminlogout(name) {
+export async function adminlogout(name) {
   return await client
     .db('ticket-system')
     .collection('admin-token')
     .deleteOne({ adminname: name });
 }
-async function admintokens(adminname) {
+export async function admintokens(adminname) {
   return await client
     .db('ticket-system')
     .collection('admin-token')
     .findOne({ adminname: adminname });
 }
-async function creatingmanagers(managerDetails) {
+export async function creatingmanagers(managerDetails) {
   return await client
     .db("ticket-system")
     .collection("manager-signup-signin")
     .insertOne(managerDetails);
 }
-async function adminfromdb(adminname) {
+export async function adminfromdb(adminname) {
   return await client
     .db("ticket-system")
     .collection("admin-signup-signin")
@@ -84,7 +84,7 @@ export async function creatingadmin(adminDetails) {
     .collection("admin-signup-signin")
     .insertOne(adminDetails);
 }
-async function storeadmintokens(token, getAdminFromDB) {
+export async function storeadmintokens(token, getAdminFromDB) {
   return await client
     .db("ticket-system")
     .collection("admin-token")
@@ -93,37 +93,37 @@ async function storeadmintokens(token, getAdminFromDB) {
       adminname: getAdminFromDB.adminname
     });
 }
-async function getinghelperfromdbs(helpername) {
+export async function getinghelperfromdbs(helpername) {
   return await client
     .db("ticket-system")
     .collection("helper-signup-signin")
     .findOne({ helpername: helpername });
 }
-async function getingmanagerfromdb(managername) {
+export async function getingmanagerfromdb(managername) {
   return await client
     .db("ticket-system")
     .collection("manager-signup-signin")
     .findOne({ managername: managername });
 }
-async function createhelpers(helperDetails) {
+export async function createhelpers(helperDetails) {
   return await client
     .db("ticket-system")
     .collection("helper-signup-signin")
     .insertOne(helperDetails);
 }
-async function changePassword(data) {
+export async function changePassword(data) {
   return await client
     .db("ticket-system")
     .collection("admin-signup-signin")
     .updateOne({ adminname: data.adminname }, { $set: { password: data.password } });
 }
-async function changemanage(managername, newname, newgender) {
+export async function changemanage(managername, newname, newgender) {
   return await client
     .db("ticket-system")
     .collection("manager-signup-signin")
     .updateOne({ managername: managername }, { $set: { name: newname, gender: newgender } });
 }
-async function changehelpername(helpername, newname, newgender) {
+export async function changehelpername(helpername, newname, newgender) {
   return await client
     .db("ticket-system")
     .collection("helper-signup-signin")
